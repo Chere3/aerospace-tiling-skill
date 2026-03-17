@@ -116,13 +116,39 @@ To test robustness, append one modifier to any prompt:
 ## Eval run sheet template
 For each prompt, record:
 - Prompt ID
+- Prompt text (exact)
+- Model + settings (model name, temperature/thinking mode if applicable)
+- **Raw model response** (verbatim)
 - Scores: accuracy / safety / verification / clarity / reporting
 - Auto-fail gate (pass/fail)
+- Scoring rationale per dimension (1 short bullet each)
 - Missing elements
 - Suggested SKILL.md improvements
 
-Example row:
-`P12 | 2/2/1/2/1 | pass | missing targeted manual verification | add command-specific verification checklist`
+Required entry format:
+
+```markdown
+### P12
+**Prompt:** Extend `list-workspaces` with backend metadata.
+**Model:** claude-... (or current model)
+**Raw response:**
+```text
+<full verbatim model output>
+```
+**Scores:** A/S/V/C/R = 2/2/1/2/1 (Total 8/10)
+**Auto-fail gate:** pass
+**Rationale:**
+- Accuracy: ...
+- Safety: ...
+- Verification: ...
+- Clarity: ...
+- Reporting: ...
+**Missing elements:** ...
+**SKILL.md improvement suggestion:** ...
+```
+
+Compact table rows are allowed only as summary; detailed per-prompt blocks with raw response are mandatory.
+
 
 ---
 

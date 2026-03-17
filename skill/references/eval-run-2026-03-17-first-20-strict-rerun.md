@@ -3,6 +3,9 @@
 Scope: P1-P20 from `skill/references/evals.md`
 Evaluator mode: strict manual rubric re-run after SKILL hardening rules were added.
 
+> Note: This run is legacy-format and does **not** include per-prompt raw model responses.
+> Starting next run, raw response capture is mandatory per evals.md template.
+
 What changed before rerun:
 - Mandatory command-specific verification matrix
 - Mandatory negative-path check
