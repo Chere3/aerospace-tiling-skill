@@ -90,7 +90,18 @@ cd /Users/diego/Documents/proyectos/aerospace-spaces
 ./run-cli.sh list-windows --all
 ```
 
-If command behavior changed, include at least one targeted manual command flow proving the new semantics.
+No generic verification allowed.
+- Build/tests alone are insufficient for behavior changes.
+- You must include targeted command flows tied to the modified behavior.
+
+Mandatory command-specific verification matrix (for behavior-changing tasks):
+1) Happy path check (new/updated behavior works)
+2) Edge path check (boundary/optional flag/deprecated alias)
+3) Regression pair check (related behavior still works)
+4) Negative path check (invalid input/failure mode produces expected safe outcome)
+
+If backend logic is touched, include fallback verification (backend unavailable/error path).
+If config migration/deprecation is touched, include migration verification (old key -> warning/path, new key -> accepted path).
 </verification>
 
 <change_policies>
@@ -150,11 +161,20 @@ When delivering a serious change response, use this exact structure:
 3. Minimal implementation plan (ordered)
 4. Verification commands
 5. Behavioral impact
-6. Unchanged behavior
+6. Unchanged behavior (minimum 2 explicit bullets)
 7. Risks and follow-ups
+8. Risk-to-mitigation map
 
 If information is missing, state assumptions before step 1.
 </response_template>
+
+<risk_mitigation_rule>
+Every behavior-affecting task must include at least one explicit mapping:
+- Risk: <specific failure/regression>
+- Mitigation: <specific check/test/guardrail>
+
+Generic warnings without mitigation do not count.
+</risk_mitigation_rule>
 
 <definition_of_done>
 Every serious task must include:
